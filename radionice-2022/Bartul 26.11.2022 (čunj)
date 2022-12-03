@@ -37,21 +37,24 @@ void RobotLine::radionica() {
     go(90, 90);
   }
 
-  if (front() < 120) {
+  if (front() > 80 and front() < 120) {
     go(-90, 90);
     delayMs(500);
     go(50, 50);
     delayMs(1000);
     go(90, -90);
     delayMs(500);
-    go(50, 50);
+    go(90, 90);
     delayMs(1000);
     go(90, -90);
     delayMs(500);
     go(50, 50);
-    delayMs(1000);
+    delayMs(600);
     go(-90, 90);
     delayMs(500);
+    go(50, 50);
+    delayMs(200);
+    
   }
 
    sprintf(simbol, "%d", broj);
