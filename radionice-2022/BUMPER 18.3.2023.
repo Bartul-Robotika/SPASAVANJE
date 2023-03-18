@@ -1,0 +1,38 @@
+#pragma once
+#include "helper.h"
+
+
+void RobotLine::radionica()
+{
+  static int currentState;
+#define BUTTON_PIN 16
+  currentState = digitalRead(BUTTON_PIN);
+  if (setup()) {
+    armCatchReady();
+  }
+
+  go(50, 50);
+  armClose();
+  delayMs(1000);
+  if (currentState == LOW) {
+    stop();
+    end();
+    delayMs(1000);
+  }
+  else {
+    armCatchReady();
+    delayMs(300);
+  }
+
+
+  /*while (currentState == HIGH) {
+    go(50, 50);
+    armClose();
+    delayMs(500);
+    armCatchReady();
+    delayMs(500);
+    noLoopWithoutThis();
+    }
+    stop();
+    delayMs(1000);*/
+}
