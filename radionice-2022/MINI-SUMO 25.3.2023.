@@ -1,0 +1,49 @@
+MOTORI:  
+  // Depending on your wiring, it may be necessary to spin some motors in the other direction.
+  //mrm_mot4x3_6can->directionChange(0); // Uncomment to change 1st wheel's rotation direction
+  mrm_mot4x3_6can->directionChange(1); // Uncomment to change 2nd wheel's rotation direction
+  mrm_mot4x3_6can->directionChange(2); // Uncomment to change 3rd wheel's rotation direction
+  mrm_mot4x3_6can->directionChange(3); // Uncomment to change 4th wheel's rotation direction
+  
+LIDARI CPP:
+uint16_t RobotLine::frontLeft(uint8_t sampleCount, uint8_t sigmaCount) {
+  return mrm_lid_can_b->distance(1, sampleCount, sigmaCount); // Correct all sensors so that they return the same value for the same physical distance.
+}
+
+uint16_t RobotLine::left(uint8_t sampleCount, uint8_t sigmaCount) {
+  return mrm_lid_can_b->distance(0, sampleCount, sigmaCount); // Correct all sensors so that they return the same value for the same physical distance.
+}
+
+uint16_t RobotLine::frontRight(uint8_t sampleCount, uint8_t sigmaCount) {
+  return mrm_lid_can_b2->distance(0, sampleCount, sigmaCount); // Correct all sensors so that they return the same value for the same physical distance.
+}
+
+uint16_t RobotLine::right(uint8_t sampleCount, uint8_t sigmaCount) {
+  return mrm_lid_can_b->distance(2, sampleCount, sigmaCount); // Correct all sensors so that they return the same value for the same physical distance.
+}
+
+LIDARI H:
+	uint16_t frontLeft(uint8_t sampleCount = 0, uint8_t sigmaCount = 1);
+
+  uint16_t left(uint8_t sampleCount = 0, uint8_t sigmaCount = 1);
+
+	uint16_t frontRight(uint8_t sampleCount = 0, uint8_t sigmaCount = 1);
+
+  uint16_t right(uint8_t sampleCount = 0, uint8_t sigmaCount = 1);
+  
+  KOD:
+#pragma once
+#include "helper.h"
+
+
+void RobotLine::radionica()
+{
+  go(127, -127);
+
+  if(frontRight() < 150){
+    go(127, 127);
+    delayMs(1500);
+    stop();
+    end();
+  }
+}
