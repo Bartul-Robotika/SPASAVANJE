@@ -1,0 +1,35 @@
+#pragma once
+#include "helper.h"
+
+
+void RobotLine::radionica()
+{
+  static int zatvoreno = false;
+  static int currentState;
+#define BUTTON_PIN 16
+  currentState = digitalRead(BUTTON_PIN);
+
+  if (currentState ==  HIGH  and zatvoreno == true) {
+    go(50, 50);
+    armCatchReady();
+    delayMs(400);
+  }
+
+  if (currentState == HIGH) {
+    go(50, 50);
+    armClose();
+    zatvoreno = true;
+    delayMs(400);
+  }
+
+  while (currentState == LOW and zatvoreno == true) {
+    stop();
+    end();
+    delayMs(500);
+    zatvoreno=false;
+    noLoopWithoutThis();
+  }
+}
+
+BUMPER CPP:
+pinMode(BUTTON_PIN, INPUT_PULLUP);
