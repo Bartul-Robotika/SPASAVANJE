@@ -102,3 +102,50 @@ void RobotLine::radionica()
     end();
   }
 }
+
+BUMPER CPP:
+
+
+PRAĆENJE ZIDA:
+void RobotLine::desnizid() {
+  if (setup()){
+  armOpen();}
+  if (rightFront() < leftFront()) {
+    if (rightFront() < 120) {
+      go(45, 55);
+    }
+    else {
+      go(55, 45);
+    }
+  }
+}
+
+void RobotLine::desnizid1() {
+  if (setup()){
+  armOpen();}
+  if (rightFront() < leftFront()) {
+    if (rightFront() < 190) {
+      go(45, 55);
+    }
+    else {
+      go(55, 45);
+    }
+  }
+}
+
+void RobotLine::desnizid2() {
+  if (setup()){
+  armOpen();}
+  if (rightFront() < leftFront()) {
+    if (rightFront() < 250) {
+      go(45, 55);
+    }
+    else {
+      go(55, 45);
+    }
+  }
+}
+
+void desnizid();
+void desnizid1();
+void desnizid2();
