@@ -104,7 +104,7 @@ void RobotLine::radionica()
 }
 
 BUMPER CPP:
-
+pinMode(BUTTON_PIN, INPUT_PULLUP);
 
 PRAĆENJE ZIDA:
 void RobotLine::desnizid() {
