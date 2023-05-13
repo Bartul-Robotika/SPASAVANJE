@@ -1,0 +1,136 @@
+#pragma once
+#include "helper.h"
+
+
+void RobotLine::radionica()
+{
+  static bool zatvoreno = false;
+  static bool zid = true;
+  static bool uhvatio = false;
+  static bool vrati = true;
+  static bool desni = true;
+  static int razlika = 0;
+  static int prvavrijednost = 0;
+  static int drugavrijednost = 0;
+  static int broj = 0;
+  static int krug = 0;
+  static int currentState;;
+  char simbol[10 + sizeof(char)];
+#define BUTTON_PIN 16
+  currentState = digitalRead(BUTTON_PIN);
+  if (setup()) {
+    armCatchReady();
+    Serial.begin(9600);
+  }
+
+  prvavrijednost = rightFront();
+
+  if (broj / 2 % 0) {
+    prvavrijednost = rightFront();
+    broj++;
+  }
+ /*else {
+    drugavrijednost = rightFront();
+    broj++;
+  }
+  if (prvavrijednost == true and drugavrijednost == true) {
+    razlika = prvavrijednost - drugavrijednost;
+  }
+  if (razlika > 20) {
+    //objekt
+  }
+
+  //prvavrijednost = rightFront();
+
+  if (rightFront() > 200 and krug > 2) {
+    go(50, 50);
+  }
+
+  if (krug > 3 and krug < 9) {
+    desni = false;
+    desnizid1();
+  }
+
+  if (krug > 7 and krug < 13) {
+    desnizid2();
+  }
+
+  if (krug == 12) {
+    display("Ball not found");
+    stop();
+    end();
+  }
+
+  if (front() < 210 and krug > 2 and krug < 7) {
+    go(-90, 90);
+    delayMs(525);
+    krug++;
+  }
+
+  if (front() < 270 and krug > 6) {
+    go(-90, 90);
+    delayMs(550);
+    krug++;
+  }
+
+  if (rightFront() < 150 and zid == true and desni == true and zatvoreno == false) {
+    desnizid();
+  }
+
+  if (front() < 160 and zid == true and krug < 4 and zatvoreno == false) {
+    go(-90, 90);
+    delayMs(525);
+    krug++;
+  }
+  */
+  sprintf(simbol, "%d", prvavrijednost);
+  display(simbol);
+  Serial.println(prvavrijednost);
+
+
+  /* if(leftFront() < 180 and leftFront() > 80 and zid == true and uhvatio==false){
+     go(90, 90);
+     delayMs(500);
+     go(-90, 90);
+     delayMs(500);
+     zid=false;
+    }*/
+
+  /*  if (currentState ==  HIGH and zatvoreno==true) {
+      go(50, 50);
+      armCatchReady();
+      delayMs(400);
+    }
+
+    if (currentState == HIGH and zid == false) {
+      go(50, 50);
+      armClose();
+      zatvoreno = true;
+      delayMs(400);
+    }
+
+    while (currentState == LOW) {
+      stop();
+      delayMs(500);
+      uhvatio=true;
+      zatvoreno=false;
+      noLoopWithoutThis();
+    }
+
+    if (uhvatio == true and vrati==true){
+      go(90, -90);
+      delayMs(1000);
+      go(50, 50);
+      delayMs(1000);
+      go(-90, 90);
+      delayMs(400);
+      zid=true;
+      vrati=false;
+    }
+
+    if(lineAny() and uhvatio==true){
+      stop();
+      armOpen();
+      end();
+    }*/
+}
